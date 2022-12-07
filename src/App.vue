@@ -1,28 +1,29 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" data-app>
+    <AppBar></AppBar>
+    <v-main><br><br>
+      <TextArea></TextArea>
+    </v-main>
+
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TextArea from '@/components/TextArea'
+import AppBar from '@/components/AppBar'
+import {sync} from "vuex-pathify";
 
 export default {
   name: 'App',
+  computed:{
+    errors:sync('Notification/error'),
+    success:sync('Notification/success')
+  },
   components: {
-    HelloWorld
+    TextArea,
+    AppBar,
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+
